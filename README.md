@@ -12,7 +12,7 @@
 - Мова програмування: C# (.NET Core)
 - IDE: Visual Studio Code 1.116.0 (user setup)
 - VCS: Git 2.47 + GitHub
-- AI-асистент: GitHub Copilot / Gemini
+- AI-асистент: GitHub Copilot / Gemini / ChatGPT
 
 ## Встановлення та запуск
 
