@@ -1,14 +1,14 @@
 using System;
 using System.Security.Cryptography;
 
-public class VerificationService
+public static class VerificationHelper
 {
-    public string GenerateOtpCode()
+    public static string GenerateCode()
     {
-        return RandomNumberGenerator.GetInt32(100000, 1000000).ToString();
+        return RandomNumberGenerator.GetInt32(1000, 10000).ToString();
     }
 
-    public bool VerifyCode(string inputCode, string expectedCode)
+    public static bool Verify(string inputCode, string expectedCode)
     {
         if (string.IsNullOrWhiteSpace(inputCode) || string.IsNullOrWhiteSpace(expectedCode))
         {
@@ -22,23 +22,22 @@ class Program
 {
     static void Main()
     {
-        var authService = new VerificationService();
-        string expectedCode = authService.GenerateOtpCode();
+        string expectedCode = VerificationHelper.GenerateCode();
         
-        Console.WriteLine($"[Системное сообщение] Код отправлен: {expectedCode}");
+        Console.WriteLine($"[Системное сообщение] Отправлен 4-значный код: {expectedCode}");
         Console.WriteLine(new string('-', 30));
-        Console.Write("Введите 6-значный код подтверждения: ");
+        Console.Write("Введите код подтверждения: ");
         
         string userInput = expectedCode; 
         Console.WriteLine(userInput);
 
-        if (authService.VerifyCode(userInput, expectedCode))
+        if (VerificationHelper.Verify(userInput, expectedCode))
         {
-            Console.WriteLine("✅ Успех: Верификация пройдена!");
+            Console.WriteLine("✅ Доступ разрешен!");
         }
         else
         {
-            Console.WriteLine("❌ Ошибка: Неверный код.");
+            Console.WriteLine("❌ Неверный код.");
         }
     }
 }
